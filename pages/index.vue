@@ -5,7 +5,7 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
 <template>
   <div class="w-full relative">
     <div class="w-full h-[48rem] relative pb-8">
-      <img src="/couch.png" alt="Couch Header" class="w-full h-full absolute object-cover z-0" />
+      <img src="/couch2.png" alt="Couch Header" class="w-full h-full absolute object-cover z-0" />
 
       <div class="left-0 absolute w-full grid grid-cols-5 h-[48rem] bg-[linear-gradient(to_right,#f3eae4_0%,#f3eae4_35%,rgba(243,234,228,.9)_45%,rgba(243,234,228,.6)_70%,rgba(243,234,228,.3)_75%,transparent_100%)] z-10">
         <div class="col-span-2 px-24 flex flex-col items-center w-full">

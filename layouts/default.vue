@@ -13,13 +13,23 @@ const route = useRoute()
       </button>
 
       <button class="flex flex-col items-center relative">
-        <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">About Us</a>
+        <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">About</a>
         <div v-if="route.path === '/about'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
       <button class="flex flex-col items-center relative">
+        <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Services</a>
+        <div v-if="route.path === '/services'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
+      </button>
+
+      <button class="flex flex-col items-center relative">
+        <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Faq</a>
+        <div v-if="route.path === '/Faq'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
+      </button>
+
+      <button class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Contact</a>
-        <div v-if="route.path === '/contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
+        <div v-if="route.path === '/Contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
       <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat">Book a session</button>
