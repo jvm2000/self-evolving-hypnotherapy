@@ -7,7 +7,7 @@ const route = useRoute()
     <img src="/logo-header.png" alt="Logo Header" class="w-auto h-24" />
 
     <div class="flex items-center gap-20">
-      <button class="flex flex-col items-center relative">
+      <button @click="navigateTo('/')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Home</a>
         <div v-if="route.path === '/'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
@@ -17,7 +17,7 @@ const route = useRoute()
         <div v-if="route.path === '/about'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button class="flex flex-col items-center relative">
+      <button @click="navigateTo('services')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Services</a>
         <div v-if="route.path === '/services'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
