@@ -10,7 +10,8 @@ const props = defineProps<{
 <template>
   <div class="grid grid-cols-3 items-start gap-24">
     <div class="col-span-1 flex flex-col items-start space-y-6 pt-4">
-      <p class="text-3xl font-montserrat text-[#b07750]">{{ props.index }}</p>
+      <!-- Hidden -->
+      <p v-if="false" class="text-3xl font-montserrat text-[#b07750]">{{ props.index }}</p> 
 
       <p class="text-3xl font-garamond text-black tracking-wide">{{ props.label }}</p>
 

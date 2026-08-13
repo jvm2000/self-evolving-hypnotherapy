@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { HeartIcon } from '@heroicons/vue/24/solid'
 </script>
 
 <template>
@@ -36,9 +35,9 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
         label="Hypnotherapy"
         description="Release what no longer serves. Reconnect with your inner strength. Evolve into the life you deserve."
         :contents="[
-          'Hypnotherapy is a gentle yet deeply transformative therapy that works with the subconscious mind — the place where our beliefs, habits, emotions and automatic behaviours are stored. While in a deeply relaxed state, you remain aware and in complete control as your mind becomes more open to positive change.',
+          'Hypnotherapy is a gentle yet deeply transformative therapy that works with the subconscious mind the place where our beliefs, habits, emotions and automatic behaviours are stored. While in a deeply relaxed state, you remain aware and in complete control as your mind becomes more open to positive change.',
           'By working directly with the subconscious, hypnotherapy helps uncover and release the root cause of limiting beliefs and unwanted patterns rather than simply managing the symptoms. Whether you\'re struggling with anxiety, stress, fears, unwanted habits, confidence, weight management or emotional overwhelm, hypnotherapy creates the opportunity for lasting change from within.',
-          'Every session is personalised because every person\'s journey is unique. My role is to guide you safely while your own mind does the incredible work it was designed to do — heal, adapt and grow.'
+          'Every session is personalised because every person\'s journey is unique. My role is to guide you safely while your own mind does the incredible work it was designed to do heal, adapt and grow.'
         ]"
       />
 
@@ -62,7 +61,7 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
         label="Neuro-Linguistic Programming (NLP)"
         description="Change your thinking. Change your patterns. Change your life."
         :contents="[
-          'Our minds are constantly creating patterns — many of them helpful, and some that quietly keep us feeling stuck. Neuro-Linguistic Programming (NLP) helps identify these unconscious patterns and gently replace them with healthier, more empowering ways of thinking and responding.',
+          'Our minds are constantly creating patterns many of them helpful, and some that quietly keep us feeling stuck. Neuro-Linguistic Programming (NLP) helps identify these unconscious patterns and gently replace them with healthier, more empowering ways of thinking and responding.',
           'NLP focuses on the connection between your thoughts, language, emotions and behaviours. By changing the way your mind processes experiences, you can develop greater confidence, reduce anxiety, improve communication, overcome fears, increase motivation and create meaningful change in both your personal and professional life.',
           'Rather than dwelling on the past, NLP equips you with practical tools to create the future you want.'
         ]"
@@ -77,7 +76,7 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
         :contents="[
           'Gestalt Therapy is a powerful approach that encourages self-awareness, emotional healing and personal growth by helping you connect with what is happening in the present moment.',
           'Often, unresolved emotions or unfinished experiences quietly influence our relationships, decisions and sense of self. Gestalt Therapy gently brings these experiences into awareness, allowing you to process them safely and with compassion.',
-          'As you reconnect with yourself, you begin to understand old patterns, release emotional burdens and move forward with greater clarity, confidence and self-acceptance. It is about becoming whole — not by changing who you are, but by embracing every part of yourself.'
+          'As you reconnect with yourself, you begin to understand old patterns, release emotional burdens and move forward with greater clarity, confidence and self-acceptance. It is about becoming whole not by changing who you are, but by embracing every part of yourself.'
         ]"
       />
 
@@ -89,7 +88,7 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
         description="Your past may have shaped you, but it doesn't have to define you."
         :contents="[
           'EMDR (Eye Movement Desensitisation and Reprocessing) is a highly effective, evidence-based therapy that helps the brain naturally process distressing experiences that may still be affecting your daily life.',
-          'Sometimes difficult memories become &quot;stuck,&quot; leaving us feeling anxious, overwhelmed, triggered or held back by experiences we thought we\'d moved on from. Using gentle bilateral stimulation — such as guided eye movements or tapping — EMDR supports the brain in safely reprocessing these memories so they lose their emotional intensity.',
+          'Sometimes difficult memories become &quot;stuck,&quot; leaving us feeling anxious, overwhelmed, triggered or held back by experiences we thought we\'d moved on from. Using gentle bilateral stimulation such as guided eye movements or tapping EMDR supports the brain in safely reprocessing these memories so they lose their emotional intensity.',
           'As healing takes place, many clients notice they feel calmer, more resilient and free from the emotional weight they have been carrying. EMDR can be beneficial for trauma, anxiety, grief, phobias, low self-worth, PTSD and many other emotional challenges, helping you move forward with greater confidence and peace.'
         ]"
       />

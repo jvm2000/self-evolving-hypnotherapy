@@ -22,21 +22,37 @@ const route = useRoute()
         <div v-if="route.path === '/services'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button class="flex flex-col items-center relative">
+      <button @click="navigateTo('faq')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Faq</a>
-        <div v-if="route.path === '/Faq'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
+        <div v-if="route.path === '/faq'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
       <button class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Contact</a>
-        <div v-if="route.path === '/Contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
+        <div v-if="route.path === '/contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
       <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat">Book a session</button>
     </div>
   </header>
 
-  <slot />
+  <div class="overflow-x-hidden">
+    <slot />
+  </div>
+
+  <footer v-if="route.path !== '/'" class="w-full border-t border-orange-200/50 overflow-x-hidden">
+    <div class="mx-auto flex flex-col items-center space-y-2 py-8">
+      <p class="text-2xl font-alexBrush text-[#b07750] font-extralight">Self Evolving Hypnotherapy</p>
+      
+      <div class="flex items-center gap-4">
+        <p class="text-xs font-montserrat uppercase text-black tracking-widest">R E L E A S E</p>
+        <div class="w-[3px] h-[3px] bg-[#8a7058] rounded-full"></div>
+        <p class="text-xs font-montserrat uppercase text-black tracking-widest">R E C O N N E C T</p>
+        <div class="w-[3px] h-[3px] bg-[#8a7058] rounded-full"></div>
+        <p class="text-xs font-montserrat uppercase text-black tracking-widest">E V O L V E</p>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <style>
