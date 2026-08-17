@@ -90,18 +90,18 @@ const faqs = [
 <template>
   <section class="relative py-24">
     <div class="mx-auto flex flex-col items-center gap-4">
-      <p class="text-sm font-montserrat uppercase text-[#83684f] tracking-widest">F R E Q U E N T L Y   A S K E D</p>
+      <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">F R E Q U E N T L Y   A S K E D</p>
 
-      <p class="text-7xl font-garamond text-black tracking-wide pt-6">Your questions,</p>
+      <p class="text-5xl sm:text-7xl font-garamond text-black tracking-wide pt-6">Your questions,</p>
 
       <div class="w-full flex flex-col items-center space-y-8">
-        <p class="text-7xl font-alexBrush text-[#b07750] font-extralight">gently answered</p>
+        <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">gently answered</p>
 
         <div class="w-24 h-[1px] bg-[#b07750]"></div>
       </div>
     </div>
 
-    <div class="pt-24 flex flex-col space-y-6 w-full max-w-4xl mx-auto">
+    <div class="pt-24 flex flex-col space-y-6 w-full max-w-4xl mx-auto px-8 lg:px-0">
       <div v-for="f in faqs" class="flex flex-col space-y-8 border-b border-orange-200/50 pb-8 group">
         <p class="text-2xl font-garamond group-hover:underline text-[#b07750]">{{ f.label }}</p>
 

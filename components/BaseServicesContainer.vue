@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="grid grid-cols-3 items-start gap-24">
+  <div class="grid grid-cols-1 sm:grid-cols-3 items-start gap-8 sm:gap-16 sm:2xl:gap-24">
     <div class="col-span-1 flex flex-col items-start space-y-6 pt-4">
       <!-- Hidden -->
       <p v-if="false" class="text-3xl font-montserrat text-[#b07750]">{{ props.index }}</p> 

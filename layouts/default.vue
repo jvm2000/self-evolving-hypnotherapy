@@ -3,8 +3,8 @@ const route = useRoute()
 </script>
 
 <template>
-  <header class="flex items-center justify-between w-full pt-2 px-20">
-    <img src="/logo-header.png" alt="Logo Header" class="w-auto h-24" />
+  <header class="hidden sm:flex items-center justify-between w-full py-6 sm:xl:py-2 px-20">
+    <img src="/logo-header.png" alt="Logo Header" class="w-auto h-24 hidden sm:xl:block" />
 
     <div class="flex items-center gap-20">
       <button @click="navigateTo('/')" class="flex flex-col items-center relative">
@@ -32,7 +32,7 @@ const route = useRoute()
         <div v-if="route.path === '/contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat">Book a session</button>
+      <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block">Book a session</button>
     </div>
   </header>
 

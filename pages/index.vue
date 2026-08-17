@@ -4,20 +4,20 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
 
 <template>
   <div class="w-full relative">
-    <div class="w-full h-[48rem] relative pb-8">
-      <img src="/couch2.png" alt="Couch Header" class="w-full h-full absolute object-cover z-0" />
+    <div class="w-full h-[54rem] lg:h-[60rem] xl:h-[54rem] sm:2xl:h-[54rem] relative pb-8">
+      <img src="/couch2.png" alt="Couch Header" class="w-full h-full absolute object-cover z-0 hidden lg:block" />
 
-      <div class="left-0 absolute w-full grid grid-cols-5 h-[48rem] z-10">
-        <div class="col-span-2 px-24 flex flex-col items-center w-full">
+      <div class="left-0 absolute w-full grid grid-cols-1 lg:grid-cols-2 sm:xl:grid-cols-5 h-[54rem] lg:h-[60rem] xl:h-[54rem] sm:2xl:h-[54rem] z-10">
+        <div class="col-span-1 sm:xl:col-span-2 px-24 flex flex-col items-center w-full">
           <div class="flex flex-col items-center space-y-1.5">
             <img src="/logo-header.png" alt="Logo Header" class="w-auto h-64" />
 
-            <p class="text-6xl font-garamond text-[#8a7058] uppercase tracking-widest">Self Evolving</p>
+            <p class="text-6xl font-garamond text-[#8a7058] uppercase tracking-widest px-20 md:px-4 sm:xl:px-0">Self Evolving</p>
 
-            <div class="flex items-center justify-between px-2 gap-4 w-full">
-              <div class="bg-[#8a7058] w-28 h-[1px]"></div>
+            <div class="flex items-center justify-between px-2 gap-4 sm:w-full">
+              <div class="bg-[#8a7058] w-12 sm:w-28 h-[1px]"></div>
               <p class="text-[#8a7058] font-montserrat text-2xl uppercase tracking-widest">Hypnotherapy</p>
-              <div class="bg-[#8a7058] w-28 h-[1px]"></div>
+              <div class="bg-[#8a7058] w-12 sm:w-28 h-[1px]"></div>
             </div>
 
             <div class="font-alexBrush text-[#8a7058] tracking-widest flex items-center gap-2">
@@ -35,11 +35,11 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
               <p class="text-sm text-[#8a7058] uppercase font-montserrat font-medium tracking-widest">Evolve</p>
             </div>
 
-            <p class="text-5xl font-garamond text-[#8a7058] tracking-wide pt-6">Transform Your Mind</p>
+            <p class="text-4xl sm:text-5xl font-garamond text-[#8a7058] tracking-wide pt-6">Transform Your Mind</p>
 
-            <p class="text-5xl font-alexBrush text-[#908c7a] font-extralight">Elevate Your Life</p>
+            <p class="text-4xl sm:text-5xl font-alexBrush text-[#908c7a] font-extralight">Elevate Your Life</p>
 
-            <p class="text-sm font-montserrat text-[#8a7058] text-center px-4 pt-4">
+            <p class="text-sm font-montserrat text-[#8a7058] text-center px-20 sm:px-4 pt-4">
               Compassionate hypnotherapy to help you release what no longer serves you, reconnect with your true self, and evolve into the life you were always meant to live.
             </p>
 
@@ -56,10 +56,10 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
       <div class="left-0 top-0 bg-[linear-gradient(to_bottom,#f3eae4_10%,#f3eae4_1%,transparent_100%)] w-full h-36 absolute z-0"></div>
     </div>
 
-    <div class="px-28 py-8 flex flex-col items-center w-full bg-[#eee6e1] space-y-6">
-      <p class="text-[#83806f] font-montserrat text-lg uppercase tracking-widest">How Hypnotherapy Can Help You</p>
+    <div class="px-6 sm:lg:px-28 py-8 flex flex-col sm:items-center w-full bg-[#eee6e1] space-y-6">
+      <p class="text-[#83806f] font-montserrat text-lg uppercase tracking-widest text-center">How Hypnotherapy Can Help You</p>
 
-      <div class="grid grid-cols-4 gap-0 divide-x divide-[#dcd3cc]">
+      <div class="grid grid-cols-1 md:grid-cols-2 sm:lg:grid-cols-4 gap-6 sm:lg:gap-0 sm:lg:divide-x divide-[#dcd3cc]">
         <BaseHypnoteraphy 
           label="Release" 
           description="Let go of limiting beliefs, stress, anxiety and emotional blocks."
@@ -91,7 +91,7 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
     </div>
 
     <div class="py-4 flex flex-col items-center w-full bg-[#949282]">
-      <div class="flex items-center gap-6">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
         <p class="text-2xl text-white font-alexBrush font-light">You have the power within you</p>
         <HeartIcon class="w-5 h-5 fill-white" />
         <p class="text-2xl text-white font-alexBrush font-light">Let's unlock it together.</p>

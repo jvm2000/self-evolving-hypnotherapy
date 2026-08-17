@@ -5,31 +5,31 @@
   <section class="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center bg-no-repeat mt-4" style="background-image:url(/illustrations/services-couch.jpg)">
     <div class="absolute inset-0 bg-[#f3e9df]/60 z-0"></div>
 
-    <div class="flex flex-col items-center space-y-5 z-10">
-      <p class="text-sm font-montserrat uppercase text-[#83684f] tracking-widest">S e r v i c e s</p>
+    <div class="flex flex-col items-center space-y-3 z-10">
+      <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">S e r v i c e s</p>
 
-      <p class="text-7xl font-garamond text-black tracking-wide pt-6">Gentle therapies for</p>
+      <p class="text-5xl sm:text-8xl font-alexBrush font-extrabold text-[#83684f] tracking-wide pt-6">Gentle therapies for</p>
 
-      <p class="text-7xl font-alexBrush text-[#b07750] font-extralight">lasting transformation</p>
+      <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">lasting transformation</p>
 
       <div class="w-24 h-[1px] bg-[#b07750]" />
 
-      <p class="text-lg text-gray-800 text-center font-montserrat">
-        Every session is a safe, compassionate space to release what no longer serves,<br> reconnect with your true self, and evolve into the life you were always meant to live.
+      <p class="text-sm sm:text-lg text-gray-800 text-center font-montserrat px-6 sm:px-0">
+        Every session is a safe, compassionate space to release what no longer serves,<br class="hidden sm:block"> reconnect with your true self, and evolve into the life you were always meant to live.
       </p>
 
-      <div class="flex items-center gap-6 pt-6">
-        <p class="text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e l e a s e</p>
-        <p class="text-sm font-montserrat uppercase text-[#83684f]">.</p>
-        <p class="text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e c o n n e c t</p>
-        <p class="text-sm font-montserrat uppercase text-[#83684f]">.</p>
-        <p class="text-sm font-montserrat uppercase text-[#83684f] tracking-widest">E v o l v e</p>
+      <div class="flex items-center gap-2 sm:gap-6 pt-6">
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e l e a s e</p>
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f]">.</p>
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e c o n n e c t</p>
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f]">.</p>
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">E v o l v e</p>
       </div>
     </div>
   </section>
 
-  <section class="relative w-full my-24">
-    <div class="max-w-5xl w-full mx-auto space-y-24 flex flex-col items-center">
+  <section class="relative w-full my-8 sm:my-24 px-6 sm:2xl:px-0">
+    <div class="max-w-5xl w-full mx-auto space-y-8 sm:space-y-24 flex flex-col items-center">
       <BaseServicesContainer
         index="01"
         label="Hypnotherapy"
