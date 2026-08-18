@@ -19,7 +19,7 @@ const isMenuOpen = ref(false)
         <div v-if="route.path === '/'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button class="flex flex-col items-center relative">
+      <button @click="navigateTo('about')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">About</a>
         <div v-if="route.path === '/about'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
@@ -34,7 +34,7 @@ const isMenuOpen = ref(false)
         <div v-if="route.path === '/faq'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button class="flex flex-col items-center relative">
+      <button @click="navigateTo('contact')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Contact</a>
         <div v-if="route.path === '/contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
