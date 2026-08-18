@@ -1,12 +1,19 @@
 <script setup lang="ts">
+import { Bars3Icon } from '@heroicons/vue/24/solid'
+
 const route = useRoute()
+const isMenuOpen = ref(false)
 </script>
 
 <template>
-  <header class="hidden sm:flex items-center justify-between w-full py-6 sm:xl:py-2 px-20">
-    <img src="/logo-header.png" alt="Logo Header" class="w-auto h-24 hidden sm:xl:block" />
+  <header class="flex items-center justify-between w-full py-6 px-6 sm:xl:py-2 md:px-20">
+    <img src="/logo-header.png" alt="Logo Header" class="w-auto h-12" />
 
-    <div class="flex items-center gap-20">
+    <button class="block sm:hidden" @click="isMenuOpen = true">
+      <Bars3Icon class="w-6 h-6 stroke-[#83684f]" />
+    </button>
+
+    <div class="hidden sm:flex items-center gap-20">
       <button @click="navigateTo('/')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Home</a>
         <div v-if="route.path === '/'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
@@ -53,6 +60,11 @@ const route = useRoute()
       </div>
     </div>
   </footer>
+
+  <BaseMobileMenu
+    :open="isMenuOpen"
+    @close="isMenuOpen = false"
+  />
 </template>
 
 <style>
