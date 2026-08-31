@@ -12,12 +12,16 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.10.1",
+    "@types/lodash": "^4.17.25",
     "nuxt": "^3.8.2",
     "vue": "^3.3.12",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
-    "@nuxt/fonts": "^0.14.0"
+    "@nuxt/fonts": "^0.14.0",
+    "reka-ui": "^2.10.4",
+    "tailwind-merge": "^3.6.0"
   }
 }

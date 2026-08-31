@@ -3,6 +3,7 @@ import { Bars3Icon } from '@heroicons/vue/24/solid'
 
 const route = useRoute()
 const isMenuOpen = ref(false)
+const isOpenBookSession = ref(false)
 </script>
 
 <template>
@@ -39,7 +40,7 @@ const isMenuOpen = ref(false)
         <div v-if="route.path === '/contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block">Book a session</button>
+      <button @click="isOpenBookSession = true" class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block">Book a session</button>
     </div>
   </header>
 
@@ -64,6 +65,11 @@ const isMenuOpen = ref(false)
   <BaseMobileMenu
     :open="isMenuOpen"
     @close="isMenuOpen = false"
+  />
+
+  <BookSession
+    :open="isOpenBookSession"
+    @close="isOpenBookSession = false"
   />
 </template>
 
