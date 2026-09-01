@@ -121,7 +121,7 @@ onUnmounted(() => {
     <Transition name="slide">
       <aside
         v-if="open"
-        class="fixed top-0 right-0 z-50 flex h-screen w-full max-w-md flex-col bg-[#f3eae4] shadow-2xl overflow-auto"
+        class="fixed top-0 right-0 z-50 flex h-screen w-full max-w-4xl flex-col bg-[#f3eae4] shadow-2xl overflow-auto"
       >
         <div class="flex items-center gap-4 w-full p-6">
           <div class="w-16 h-16 min-w-16 min-h-16 rounded-full border border-[#83684f] grid place-items-center resize-none shrink-0">
@@ -139,7 +139,7 @@ onUnmounted(() => {
 
         <div class="w-full border-b border-[#f3eae4] py-4"></div>
 
-        <div class="flex flex-col items-start px-6 space-y-6">
+        <div class="grid grid-cols-2 gap-6 px-6">
           <BaseInput
             label="Full Name"
             placeholder="Enter your full name"
@@ -198,13 +198,17 @@ onUnmounted(() => {
             </template>
           </BaseTimePicker>
 
-          <BaseTextArea
-            label="MESSAGE / NOTES"
-            placeholder="Tell us anything we should know..."
-            v-model="bookSessionForm.message"
-          />
+          <div class="col-span-2">
+            <BaseTextArea
+              label="MESSAGE / NOTES"
+              placeholder="Tell us anything we should know..."
+              v-model="bookSessionForm.message"
+            />
+          </div>
+        </div>
 
-          <div class="flex items-center gap-4 w-full py-6">
+        <div class="flex w-full justify-end p-6">
+          <div class="flex items-center gap-4">
             <button @click="closeMenu" class="border border-[#83684f] py-2.5 px-8 rounded-lg text-sm text-[#83684f] uppercase font-montserrat hidden lg:block bg-inherit w-full">Cancel</button>
 
             <button
