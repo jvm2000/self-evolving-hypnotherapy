@@ -57,18 +57,20 @@ const isDisabled = computed(() => {
   )
 })
 
-// Prevent body scrolling when menu is open
 watch(
   () => props.open,
   (open) => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      resetForm()
+    }
   },
 )
 
-onUnmounted(async() => {
+onUnmounted(() => {
   document.body.style.overflow = ''
-
-  await resetForm()
 })
 </script>
 
@@ -114,7 +116,7 @@ onUnmounted(async() => {
           </BaseInput>
 
           <BaseInput
-
+            type="email"
             label="Email Address"
             placeholder="Enter your email address"
             v-model="bookSessionForm.email"
@@ -137,7 +139,11 @@ onUnmounted(async() => {
           <BaseListbox
             label="Service"
             v-model="bookSessionForm.service"
-            :options="[{ name: 'United States', value: 'US' }, { name: 'Canada', value: 'CA' }, { name: 'United Kingdom', value: 'UK' }]"
+            :options="[
+              { name: 'Private Session', value: 'private-session' },
+              { name: 'Group Session', value: 'group-session' },
+              { name: 'Consultation', value: 'consultation' }
+            ]"
             :option-key="'name'"
             placeholder="Select a service"
           >
