@@ -115,7 +115,7 @@ const props = withDefaults(
   }
 )
 
-const modelValue = defineModel<T | null>({
+const modelValue = defineModel<T | null | string>({
   default: null,
 })
 const errorMessage = ref('')
@@ -248,8 +248,7 @@ watchEffect(() => {
         >
           <div class="min-w-0 flex-1">
             <SelectValue :placeholder="placeholder">
-              <span v-if="modelValue" class="min-h-9 flex items-center gap-3 truncate pr-2 text-base">
-                <img v-if="modelValue.img" :src="modelValue.img" alt="" class="h-5 w-5 shrink-0 rounded-full" />
+              <span v-if="modelValue" class="min-h-9 flex items-center gap-3 truncate pr-2 text-base pl-[52px]">
                 <span class="truncate text-[#71685f]">{{ modelValue[optionKey] }}</span>
               </span>
               <span

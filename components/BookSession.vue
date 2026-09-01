@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { CalendarDaysIcon, UserIcon, EnvelopeIcon, PhoneIcon, WrenchIcon, ClockIcon } from '@heroicons/vue/24/outline'
 
+type BookSessionForm = {
+  fullName: string
+  email: string
+  phone: string
+  service: string | null
+  date: string | null
+  time: string | null
+  message: string
+}
+
 const props = defineProps<{
   open: boolean
 }>()
@@ -9,9 +19,43 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
+const bookSessionForm = ref<BookSessionForm>({
+  fullName: '',
+  email: '',
+  phone: '',
+  service: null,
+  date: null,
+  time: null,
+  message: '',
+})
+
 function closeMenu() {
   emit('close')
 }
+
+function resetForm() {
+  bookSessionForm.value = {
+    fullName: '',
+    email: '',
+    phone: '',
+    service: null,
+    date: null,
+    time: null,
+    message: '',
+  }
+}
+
+const isDisabled = computed(() => {
+  return (
+    !bookSessionForm.value.fullName ||
+    !bookSessionForm.value.email ||
+    !bookSessionForm.value.phone ||
+    !bookSessionForm.value.service ||
+    !bookSessionForm.value.date ||
+    !bookSessionForm.value.time ||
+    !bookSessionForm.value.message
+  )
+})
 
 // Prevent body scrolling when menu is open
 watch(
@@ -21,8 +65,10 @@ watch(
   },
 )
 
-onUnmounted(() => {
+onUnmounted(async() => {
   document.body.style.overflow = ''
+
+  await resetForm()
 })
 </script>
 
@@ -60,7 +106,7 @@ onUnmounted(() => {
           <BaseInput
             label="Full Name"
             placeholder="Enter your full name"
-            v-model="fullName"
+            v-model="bookSessionForm.fullName"
           >
             <template #icon>
               <UserIcon class="w-5 h-5 text-[#83684f]" />
@@ -68,9 +114,10 @@ onUnmounted(() => {
           </BaseInput>
 
           <BaseInput
+
             label="Email Address"
             placeholder="Enter your email address"
-            v-model="email"
+            v-model="bookSessionForm.email"
           >
             <template #icon>
               <EnvelopeIcon class="w-5 h-5 text-[#83684f]" />
@@ -80,7 +127,7 @@ onUnmounted(() => {
           <BaseInput
             label="Phone Number"
             placeholder="Enter your phone number"
-            v-model="phone"
+            v-model="bookSessionForm.phone"
           >
             <template #icon>
               <PhoneIcon class="w-5 h-5 text-[#83684f]" />
@@ -89,7 +136,7 @@ onUnmounted(() => {
 
           <BaseListbox
             label="Service"
-            v-model="selectedService"
+            v-model="bookSessionForm.service"
             :options="[{ name: 'United States', value: 'US' }, { name: 'Canada', value: 'CA' }, { name: 'United Kingdom', value: 'UK' }]"
             :option-key="'name'"
             placeholder="Select a service"
@@ -101,10 +148,10 @@ onUnmounted(() => {
 
           <BaseDatePicker
             label="Preferred Date"
-            v-model="selectedDate"
+            v-model="bookSessionForm.date"
           />
 
-          <BaseTimePicker v-model="time" label="Start Time">
+          <BaseTimePicker v-model="bookSessionForm.time" label="Start Time">
             <template #icon>
               <ClockIcon class="h-5 w-5 text-[#83684f]" />
             </template>
@@ -113,13 +160,13 @@ onUnmounted(() => {
           <BaseTextArea
             label="MESSAGE / NOTES"
             placeholder="Tell us anything we should know..."
-            v-model="email"
+            v-model="bookSessionForm.message"
           />
 
           <div class="flex items-center gap-4 w-full py-6">
             <button @click="closeMenu" class="border border-[#83684f] py-2.5 px-8 rounded-lg text-sm text-[#83684f] uppercase font-montserrat hidden lg:block bg-inherit w-full">Cancel</button>
 
-            <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block w-full">Send</button>
+            <button :disabled="isDisabled" class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block w-full" :class="{ 'opacity-50 cursor-not-allowed': isDisabled }">Send</button>
           </div>
         </div>
       </aside>

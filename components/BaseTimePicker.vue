@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import {
   ClockIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
 } from '@heroicons/vue/24/outline'
 
 interface Props {
@@ -14,33 +14,25 @@ withDefaults(defineProps<Props>(), {
   placeholder: 'Select time',
 })
 
-const model = defineModel<string | null>()
+const model = defineModel<string | null>({
+  default: null,
+})
 
 const isOpen = ref(false)
-
 const timePickerRef = ref<HTMLElement | null>(null)
 const timeMenu = ref<HTMLElement | null>(null)
-
 const shouldOpenTop = ref(false)
 
 const selectedHour = ref<number | null>(null)
 const selectedMinute = ref<number | null>(null)
 const selectedPeriod = ref<'AM' | 'PM' | null>(null)
 
+// Flag to distinguish between internal updates and external v-model changes
+let isInternalUpdate = false
+
 const hours = Array.from({ length: 12 }, (_, index) => index + 1)
+const minutes = Array.from({ length: 60 }, (_, index) => index)
 
-const minutes = Array.from(
-  { length: 60 },
-  (_, index) => index,
-)
-
-/**
- * Convert 24-hour model value into
- * 12-hour picker values.
- *
- * Model format:
- * HH:mm
- */
 const initializeTime = () => {
   if (!model.value) {
     selectedHour.value = null
@@ -50,7 +42,6 @@ const initializeTime = () => {
   }
 
   const [hourString, minuteString] = model.value.split(':')
-
   const hour24 = Number(hourString)
   const minute = Number(minuteString)
 
@@ -69,9 +60,7 @@ const initializeTime = () => {
   }
 
   selectedPeriod.value = hour24 >= 12 ? 'PM' : 'AM'
-
   let hour12 = hour24 % 12
-
   if (hour12 === 0) {
     hour12 = 12
   }
@@ -80,9 +69,6 @@ const initializeTime = () => {
   selectedMinute.value = minute
 }
 
-/**
- * Format the selected time for display.
- */
 const formattedTime = computed(() => {
   if (
     selectedHour.value === null ||
@@ -97,17 +83,12 @@ const formattedTime = computed(() => {
   ).padStart(2, '0')} ${selectedPeriod.value}`
 })
 
-/**
- * Convert selected 12-hour time
- * into 24-hour HH:mm model value.
- */
 const updateModel = () => {
   if (
     selectedHour.value === null ||
     selectedMinute.value === null ||
     selectedPeriod.value === null
   ) {
-    model.value = null
     return
   }
 
@@ -123,104 +104,83 @@ const updateModel = () => {
     }
   }
 
+  isInternalUpdate = true
   model.value = `${String(hour24).padStart(2, '0')}:${String(
     selectedMinute.value,
   ).padStart(2, '0')}`
+  
+  nextTick(() => {
+    isInternalUpdate = false
+  })
 }
 
-/**
- * Select hour.
- */
 const selectHour = (hour: number) => {
   selectedHour.value = hour
+  // Fill sensible defaults if not set yet
+  if (selectedMinute.value === null) selectedMinute.value = 0
+  if (selectedPeriod.value === null) selectedPeriod.value = 'AM'
   updateModel()
 }
 
-/**
- * Select minute.
- */
 const selectMinute = (minute: number) => {
   selectedMinute.value = minute
+  // Fill sensible defaults if not set yet
+  if (selectedHour.value === null) selectedHour.value = 12
+  if (selectedPeriod.value === null) selectedPeriod.value = 'AM'
   updateModel()
 }
 
-/**
- * Select AM / PM.
- */
 const selectPeriod = (period: 'AM' | 'PM') => {
   selectedPeriod.value = period
+  // Fill sensible defaults if not set yet
+  if (selectedHour.value === null) selectedHour.value = 12
+  if (selectedMinute.value === null) selectedMinute.value = 0
   updateModel()
 }
 
-/**
- * Toggle picker.
- */
 const openTimePicker = () => {
   initializeTime()
-
   isOpen.value = !isOpen.value
 }
 
-/**
- * Clear time.
- */
 const clearTime = () => {
+  isInternalUpdate = true
   model.value = null
-
   selectedHour.value = null
   selectedMinute.value = null
   selectedPeriod.value = null
-
   isOpen.value = false
+
+  nextTick(() => {
+    isInternalUpdate = false
+  })
 }
 
-/**
- * Close when clicking outside.
- */
 const handleClickOutside = (event: MouseEvent) => {
   if (!timePickerRef.value) return
-
   const target = event.target as Node
-
   if (!timePickerRef.value.contains(target)) {
     isOpen.value = false
   }
 }
 
-/**
- * Determine whether the menu should
- * open above the input.
- */
 const updateTimePickerPosition = () => {
   nextTick(() => {
     if (!timeMenu.value || !timePickerRef.value) return
 
-    const parentRect =
-      timePickerRef.value.getBoundingClientRect()
-
+    const parentRect = timePickerRef.value.getBoundingClientRect()
     const menuHeight = timeMenu.value.offsetHeight
-
-    const spaceBelow =
-      window.innerHeight - parentRect.bottom
-
+    const spaceBelow = window.innerHeight - parentRect.bottom
     const spaceAbove = parentRect.top
 
     shouldOpenTop.value =
-      spaceBelow < menuHeight + 16 &&
-      spaceAbove > spaceBelow
+      spaceBelow < menuHeight + 16 && spaceAbove > spaceBelow
   })
 }
 
-/**
- * Scroll selected item into view.
- */
 const scrollSelectedIntoView = () => {
   nextTick(() => {
-    const selected =
-      timeMenu.value?.querySelector(
-        '[data-selected="true"]',
-      )
-
+    const selected = timeMenu.value?.querySelector('[data-selected="true"]')
     selected?.scrollIntoView({
       block: 'center',
       behavior: 'auto',
@@ -235,48 +195,24 @@ watch(isOpen, (value) => {
   }
 })
 
+// Synchronize external prop changes only
 watch(model, () => {
-  if (!isOpen.value) {
+  if (!isInternalUpdate) {
     initializeTime()
   }
 })
 
 onMounted(() => {
-  document.addEventListener(
-    'mousedown',
-    handleClickOutside,
-  )
-
-  window.addEventListener(
-    'resize',
-    updateTimePickerPosition,
-  )
-
-  window.addEventListener(
-    'scroll',
-    updateTimePickerPosition,
-    true,
-  )
-
+  document.addEventListener('mousedown', handleClickOutside)
+  window.addEventListener('resize', updateTimePickerPosition)
+  window.addEventListener('scroll', updateTimePickerPosition, true)
   initializeTime()
 })
 
 onBeforeUnmount(() => {
-  document.removeEventListener(
-    'mousedown',
-    handleClickOutside,
-  )
-
-  window.removeEventListener(
-    'resize',
-    updateTimePickerPosition,
-  )
-
-  window.removeEventListener(
-    'scroll',
-    updateTimePickerPosition,
-    true,
-  )
+  document.removeEventListener('mousedown', handleClickOutside)
+  window.removeEventListener('resize', updateTimePickerPosition)
+  window.removeEventListener('scroll', updateTimePickerPosition, true)
 })
 </script>
 
@@ -386,8 +322,10 @@ onBeforeUnmount(() => {
                 v-for="hour in hours"
                 :key="hour"
                 type="button"
-                data-selected="true"
                 class="time-option"
+                :data-selected="
+                  selectedHour === hour
+                "
                 :class="
                   selectedHour === hour
                     ? 'time-option-selected'
@@ -516,13 +454,9 @@ onBeforeUnmount(() => {
   margin-bottom: 0.5rem;
 }
 
-/* Time columns */
-
 .time-column {
   min-width: 64px;
 }
-
-/* Scrollable hour/minute lists */
 
 .time-scroll {
   display: flex;
@@ -548,8 +482,6 @@ onBeforeUnmount(() => {
   border-radius: 999px;
   background: #d8d0c8;
 }
-
-/* Hour / minute button */
 
 .time-option {
   display: flex;
@@ -578,8 +510,6 @@ onBeforeUnmount(() => {
 .time-option-selected:hover {
   background: #71685f !important;
 }
-
-/* AM / PM */
 
 .period-option {
   display: flex;
@@ -610,8 +540,6 @@ onBeforeUnmount(() => {
 .period-option-selected:hover {
   background: #71685f;
 }
-
-/* Prevent horizontal overflow on small screens */
 
 @media (max-width: 640px) {
   .time-menu {
