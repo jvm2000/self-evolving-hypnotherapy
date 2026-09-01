@@ -28,6 +28,9 @@ const bookSessionForm = ref<BookSessionForm>({
   time: null,
   message: '',
 })
+const isSubmitting = ref(false)
+const submitSuccess = ref(false)
+const submitError = ref('')
 
 function closeMenu() {
   emit('close')
@@ -42,6 +45,38 @@ function resetForm() {
     date: null,
     time: null,
     message: '',
+  }
+}
+
+async function submitBooking() {
+  if (isDisabled.value || isSubmitting.value) {
+    return
+  }
+
+  isSubmitting.value = true
+  submitSuccess.value = false
+  submitError.value = ''
+
+  try {
+    await $fetch('/api/book-session', {
+      method: 'POST',
+      body: bookSessionForm.value,
+    })
+
+    submitSuccess.value = true
+
+    resetForm()
+
+    // Close the modal after successful submission
+    emit('close')
+  } catch (error: any) {
+    console.error('Booking submission failed:', error)
+
+    submitError.value =
+      error?.data?.statusMessage ||
+      'Something went wrong while sending your booking. Please try again.'
+  } finally {
+    isSubmitting.value = false
   }
 }
 
@@ -172,7 +207,17 @@ onUnmounted(() => {
           <div class="flex items-center gap-4 w-full py-6">
             <button @click="closeMenu" class="border border-[#83684f] py-2.5 px-8 rounded-lg text-sm text-[#83684f] uppercase font-montserrat hidden lg:block bg-inherit w-full">Cancel</button>
 
-            <button :disabled="isDisabled" class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block w-full" :class="{ 'opacity-50 cursor-not-allowed': isDisabled }">Send</button>
+            <button
+              type="button"
+              :disabled="isDisabled || isSubmitting"
+              class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block w-full"
+              :class="{
+                'opacity-50 cursor-not-allowed': isDisabled || isSubmitting
+              }"
+              @click="submitBooking"
+            >
+              {{ isSubmitting ? 'Sending...' : 'Send' }}
+            </button>
           </div>
         </div>
       </aside>

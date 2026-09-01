@@ -115,7 +115,7 @@ const props = withDefaults(
   }
 )
 
-const modelValue = defineModel<T | null | string>({
+const modelValue = defineModel<any>({
   default: null,
 })
 const errorMessage = ref('')
