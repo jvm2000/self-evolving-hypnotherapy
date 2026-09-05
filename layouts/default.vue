@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { Bars3Icon } from '@heroicons/vue/24/solid'
+import useDefault from '~/composables/useDefault'
 
 const route = useRoute()
-const isMenuOpen = ref(false)
-const isOpenBookSession = ref(false)
+const { isBookSessionModalOpen, openBookSessionModal, isMenuModalOpen } = useDefault()
 </script>
 
 <template>
-  <header class="flex items-center justify-between w-full py-6 px-6 sm:xl:py-2 md:px-20">
+  <header class="flex items-center justify-between w-full py-6 px-6 sm:xl:py-2 lg:px-6">
     <img src="/logo-header.png" alt="Logo Header" class="w-auto h-12" />
 
-    <button class="block sm:hidden" @click="isMenuOpen = true">
+    <button class="block lg:hidden" @click="isMenuModalOpen = true">
       <Bars3Icon class="w-6 h-6 stroke-[#83684f]" />
     </button>
 
-    <div class="hidden sm:flex items-center gap-20">
+    <div class="hidden lg:flex items-center gap-20">
       <button @click="navigateTo('/')" class="flex flex-col items-center relative">
         <a class="uppercase font-montserrat text-[#83684f] font-medium text-sm">Home</a>
         <div v-if="route.path === '/'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
@@ -40,7 +40,7 @@ const isOpenBookSession = ref(false)
         <div v-if="route.path === '/contact'" class="w-full h-[1px] bg-[#bbb7ab] absolute -bottom-3"></div>
       </button>
 
-      <button @click="isOpenBookSession = true" class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block">Book a session</button>
+      <button @click="openBookSessionModal" class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block">Book a session</button>
     </div>
   </header>
 
@@ -63,13 +63,13 @@ const isOpenBookSession = ref(false)
   </footer>
 
   <BaseMobileMenu
-    :open="isMenuOpen"
-    @close="isMenuOpen = false"
+    :open="isMenuModalOpen"
+    @close="isMenuModalOpen = false"
   />
 
   <BookSession
-    :open="isOpenBookSession"
-    @close="isOpenBookSession = false"
+    :open="isBookSessionModalOpen"
+    @close="isBookSessionModalOpen = false"
   />
 </template>
 

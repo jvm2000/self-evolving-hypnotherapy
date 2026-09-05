@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import useDefault from '~/composables/useDefault'
+
 interface MenuItem {
   label: string
   to: string
@@ -20,9 +22,18 @@ const items: MenuItem[] = [
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
 ]
+const { openBookSessionModal, isBookSessionModalOpen } = useDefault()
 
 function closeMenu() {
   emit('close')
+}
+
+function openBookSession() {
+  closeMenu()
+
+  setTimeout(() => {
+    openBookSessionModal()
+  }, 300)
 }
 
 function isActive(to: string) {
@@ -81,7 +92,10 @@ onUnmounted(() => {
             </li>
           </ul>
 
-          <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat w-full mt-8">Book a session</button>
+          <button 
+            class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat w-full mt-8 hidden lg:block"
+            @click="openBookSession"
+          >Book a session</button>
         </nav>
       </aside>
     </Transition>

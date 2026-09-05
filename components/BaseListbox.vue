@@ -226,7 +226,7 @@ watchEffect(() => {
       <label v-if="props.label" class="block text-[13px] font-medium uppercase tracking-[0.2em] text-[#71685f]">
         {{ props.label }}
       </label>
-      <div ref="triggerWrapperRef" class="relative" :class="{ 'mt-1': props.label }">
+      <div ref="triggerWrapperRef" class="relative w-full" :class="{ 'mt-1': props.label }">
         <!-- When open, this overlay covers the trigger so a tap on mobile reliably closes (avoids touch target issues) -->
         <div
           v-show="open"

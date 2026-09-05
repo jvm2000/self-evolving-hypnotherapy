@@ -139,11 +139,12 @@ onUnmounted(() => {
 
         <div class="w-full border-b border-[#f3eae4] py-4"></div>
 
-        <div class="grid grid-cols-2 gap-6 px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-6">
           <BaseInput
             label="Full Name"
             placeholder="Enter your full name"
             v-model="bookSessionForm.fullName"
+            class="col-span-2 lg:col-span-1"
           >
             <template #icon>
               <UserIcon class="w-5 h-5 text-[#83684f]" />
@@ -155,6 +156,7 @@ onUnmounted(() => {
             label="Email Address"
             placeholder="Enter your email address"
             v-model="bookSessionForm.email"
+            class="col-span-2 lg:col-span-1"
           >
             <template #icon>
               <EnvelopeIcon class="w-5 h-5 text-[#83684f]" />
@@ -165,6 +167,7 @@ onUnmounted(() => {
             label="Phone Number"
             placeholder="Enter your phone number"
             v-model="bookSessionForm.phone"
+            class="col-span-2 lg:col-span-1"
           >
             <template #icon>
               <PhoneIcon class="w-5 h-5 text-[#83684f]" />
@@ -189,10 +192,15 @@ onUnmounted(() => {
 
           <BaseDatePicker
             label="Preferred Date"
+            class="col-span-2 lg:col-span-1"
             v-model="bookSessionForm.date"
           />
 
-          <BaseTimePicker v-model="bookSessionForm.time" label="Start Time">
+          <BaseTimePicker 
+            v-model="bookSessionForm.time" 
+            label="Start Time"
+            class="col-span-2 lg:col-span-1"
+          >
             <template #icon>
               <ClockIcon class="h-5 w-5 text-[#83684f]" />
             </template>
@@ -207,14 +215,14 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <div class="flex w-full justify-end p-6">
-          <div class="flex items-center gap-4">
-            <button @click="closeMenu" class="border border-[#83684f] py-2.5 px-8 rounded-lg text-sm text-[#83684f] uppercase font-montserrat hidden lg:block bg-inherit w-full">Cancel</button>
+        <div class="flex lg:justify-end p-6 pb-12 lg:pb-0">
+          <div class="flex flex-col-reverse lg:flex-row w-full lg:items-center gap-4">
+            <button @click="closeMenu" class="border border-[#83684f] py-2.5 px-8 rounded-lg text-sm text-[#83684f] uppercase font-montserrat bg-inherit w-full">Cancel</button>
 
             <button
               type="button"
               :disabled="isDisabled || isSubmitting"
-              class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat hidden lg:block w-full"
+              class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat w-full"
               :class="{
                 'opacity-50 cursor-not-allowed': isDisabled || isSubmitting
               }"

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { HeartIcon } from '@heroicons/vue/24/solid'
+
+const { openBookSessionModal, isBookSessionModalOpen } = useDefault()
+
 </script>
 
 <template>
@@ -44,7 +47,7 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
             </p>
 
             <div class="pt-4">
-              <button class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat">Book a session</button>
+              <button @click="openBookSessionModal" class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat">Book a session</button>
             </div>
           </div>
 
@@ -98,4 +101,9 @@ import { HeartIcon } from '@heroicons/vue/24/solid'
       </div>
     </div>
   </div>
+
+  <BookSession
+    :open="isBookSessionModalOpen"
+    @close="isBookSessionModalOpen = false"
+  />
 </template>
