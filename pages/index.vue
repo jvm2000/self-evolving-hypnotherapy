@@ -8,7 +8,7 @@ const { openBookSessionModal, isBookSessionModalOpen } = useDefault()
 <template>
   <div class="w-full relative">
     <div class="w-full h-[54rem] lg:h-[60rem] xl:h-[54rem] sm:2xl:h-[54rem] relative pb-8">
-      <img src="/couch2.png" alt="Couch Header" class="w-full h-full absolute object-cover z-0 hidden lg:block" />
+      <img src="/bg9.jpg" alt="Couch Header" class="w-full h-full absolute object-cover z-0 hidden lg:block" />
 
       <div class="left-0 absolute w-full grid grid-cols-1 lg:grid-cols-2 sm:xl:grid-cols-5 h-[54rem] lg:h-[60rem] xl:h-[54rem] sm:2xl:h-[54rem] z-10">
         <div class="col-span-1 sm:xl:col-span-2 px-24 flex flex-col items-center w-full">
