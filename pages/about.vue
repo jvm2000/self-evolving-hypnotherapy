@@ -17,26 +17,38 @@ const aboutContent = [
 </script>
 
 <template>
-  <section class="relative py-24">
-    <div class="mx-auto flex flex-col items-center gap-4">
-      <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">A B O U T</p>
+  <section class="relative pb-24">
+    <div class="w-full h-[54rem] lg:h-[60rem] xl:h-[54rem] sm:2xl:h-[54rem] relative pb-8">
+      <img src="/bg9.jpg" alt="Couch Header" class="w-full h-full absolute object-cover z-0 hidden lg:block" />
 
-      <p class="text-5xl sm:text-7xl font-garamond text-black tracking-wide pt-6">Meet</p>
+      <div class="left-0 absolute w-full grid grid-cols-1 lg:grid-cols-2 sm:xl:grid-cols-5 h-[54rem] lg:h-[60rem] xl:h-[54rem] sm:2xl:h-[54rem] z-10">
+        <div class="col-span-1 sm:xl:col-span-2 px-24 flex items-center w-full">
+          <div class="flex flex-col items-start space-y-1.5">
+            <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">A B O U T</p>
 
-      <div class="w-full flex flex-col items-center space-y-8 px-6 lg:px-0">
-        <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">Sue‑Ellen</p>
+            <p class="text-5xl sm:text-7xl font-garamond text-black tracking-wide pt-6">Meet</p>
 
-        <div class="w-24 h-[1px] bg-[#b07750]"></div>
+            <div class="w-full flex flex-col items-start space-y-8 px-6 lg:px-0">
+              <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">Sue‑Ellen</p>
 
-        <p class="text-base font-light font-montserrat text-black max-w-3xl text-center">
-          I believe real change begins when you feel safe, understood and completely free from judgement.
-        </p>
+              <div class="w-24 h-[1px] bg-[#b07750]"></div>
 
-        <p class="text-3xl font-light font-garamond text-black max-w-3xl text-center py-16 leading-relaxed">
-          “My purpose is to help you feel lighter, stronger and more connected to yourself, so you can move forward with greater confidence and live the life you truly deserve.”
-        </p>
+              <p class="text-base font-light font-montserrat text-black max-w-3xl">
+                I believe real change begins when you feel safe, understood and completely free from judgement.
+              </p>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-span-3"></div>
       </div>
+
+      <div class="left-0 top-0 bg-[linear-gradient(to_bottom,#f3eae4_10%,#f3eae4_1%,transparent_100%)] w-full h-36 absolute z-0"></div>
     </div>
+
+    <p class="text-3xl font-light font-garamond text-black max-w-3xl text-center pt-36 pb-44 leading-relaxed mx-auto">
+      “My purpose is to help you feel lighter, stronger and more connected to yourself, so you can move forward with greater confidence and live the life you truly deserve.”
+    </p>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-5xl mx-auto px-8 lg:px-0 py-12">
       <div

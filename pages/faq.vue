@@ -95,7 +95,7 @@ const faqs = [
       <p class="text-5xl sm:text-7xl font-garamond text-black tracking-wide pt-6">Your questions,</p>
 
       <div class="w-full flex flex-col items-center space-y-8">
-        <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">gently answered</p>
+        <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">answered</p>
 
         <div class="w-24 h-[1px] bg-[#b07750]"></div>
       </div>
