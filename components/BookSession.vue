@@ -70,8 +70,6 @@ async function submitBooking() {
     // Close the modal after successful submission
     emit('close')
   } catch (error: any) {
-    console.error('Booking submission failed:', error)
-
     submitError.value =
       error?.data?.statusMessage ||
       'Something went wrong while sending your booking. Please try again.'

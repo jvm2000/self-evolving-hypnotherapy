@@ -92,6 +92,17 @@
           'As healing takes place, many clients notice they feel calmer, more resilient and free from the emotional weight they have been carrying. EMDR can be beneficial for trauma, anxiety, grief, phobias, low self-worth, PTSD and many other emotional challenges, helping you move forward with greater confidence and peace.'
         ]"
       />
+
+      <p class="text-sm text-[#d39b6e]">&#9670;</p>
+
+      <BaseServicesContainer
+        index="06"
+        label="Walk & Talk Therapy"
+        description=""
+        :contents="[
+          'There is something naturally calming about being outdoors and simply putting one foot in front of the other. Walk & Talk Therapy offers a gentle, relaxed way to explore what may be happening beneath the surface, combining therapeutic conversation with the freedom and spaciousness of walking in nature. As we move, there can be less pressure to sit face-to-face, allowing thoughts and conversations to unfold naturally, while the rhythm of walking and surrounding environment can create space to breathe, reflect and gain perspective. Together, we can explore the thoughts, emotions, patterns or changes you may be experiencing, at a pace that feels comfortable for you. Sometimes, moving your body can help you begin to move through things emotionally too — creating an opportunity to release what no longer serves you, reconnect with yourself, and evolve into the person you are becoming.'
+        ]"
+      />
     </div>
   </section>
 </template>
