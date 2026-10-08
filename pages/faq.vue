@@ -88,16 +88,30 @@ const faqs = [
 </script>
 
 <template>
-  <section class="relative py-24">
-    <div class="mx-auto flex flex-col items-center gap-4">
-      <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">F R E Q U E N T L Y   A S K E D</p>
+  <section class="relative pt-4 pb-24">
+    <div class="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image:url(/illustrations/faq-couch.jpg)">
+      <div class="absolute inset-0 bg-[#f3e9df]/60 z-0"></div>
 
-      <p class="text-5xl sm:text-7xl font-garamond text-black tracking-wide pt-6">Your questions,</p>
+      <div class="flex flex-col items-center space-y-3 z-10">
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">F R E Q U E N T L Y A S K E D</p>
 
-      <div class="w-full flex flex-col items-center space-y-8">
+        <p class="text-5xl sm:text-8xl font-alexBrush font-extrabold text-[#83684f] tracking-wide pt-6">Your questions,</p>
+
         <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">answered</p>
 
-        <div class="w-24 h-[1px] bg-[#b07750]"></div>
+        <div class="w-24 h-[1px] bg-[#b07750]" />
+
+        <p class="text-sm sm:text-lg text-gray-800 text-center font-montserrat px-6 sm:px-0 max-w-2xl w-full">
+          Everything you may be wondering about hypnotherapy, your sessions and what to expect — answered with care.
+        </p>
+
+        <div class="flex items-center gap-2 sm:gap-6 pt-6">
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e l e a s e</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f]">.</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e c o n n e c t</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f]">.</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">E v o l v e</p>
+        </div>
       </div>
     </div>
 
