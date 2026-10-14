@@ -12,5 +12,7 @@ useHead({
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+
+    <BaseToaster />
   </div>
 </template>

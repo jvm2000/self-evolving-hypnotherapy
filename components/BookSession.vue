@@ -5,9 +5,6 @@ type BookSessionForm = {
   fullName: string
   email: string
   phone: string
-  service: string | null
-  date: string | null
-  time: string | null
   message: string
 }
 
@@ -23,14 +20,12 @@ const bookSessionForm = ref<BookSessionForm>({
   fullName: '',
   email: '',
   phone: '',
-  service: null,
-  date: null,
-  time: null,
   message: '',
 })
 const isSubmitting = ref(false)
 const submitSuccess = ref(false)
 const submitError = ref('')
+const toast = useToast()
 
 function closeMenu() {
   emit('close')
@@ -41,9 +36,6 @@ function resetForm() {
     fullName: '',
     email: '',
     phone: '',
-    service: null,
-    date: null,
-    time: null,
     message: '',
   }
 }
@@ -69,6 +61,11 @@ async function submitBooking() {
 
     // Close the modal after successful submission
     emit('close')
+
+    toast.success({
+      title: 'Submit Successfully',
+      message: 'Your booking session has now been sent.',
+    })
   } catch (error: any) {
     submitError.value =
       error?.data?.statusMessage ||
@@ -83,9 +80,6 @@ const isDisabled = computed(() => {
     !bookSessionForm.value.fullName ||
     !bookSessionForm.value.email ||
     !bookSessionForm.value.phone ||
-    !bookSessionForm.value.service ||
-    !bookSessionForm.value.date ||
-    !bookSessionForm.value.time ||
     !bookSessionForm.value.message
   )
 })
@@ -119,7 +113,7 @@ onUnmounted(() => {
     <Transition name="slide">
       <aside
         v-if="open"
-        class="fixed top-0 right-0 z-50 flex h-screen w-full max-w-4xl flex-col bg-[#f3eae4] shadow-2xl overflow-auto"
+        class="fixed top-0 right-0 z-50 flex h-screen w-full max-w-2xl flex-col bg-[#f3eae4] shadow-2xl overflow-auto"
       >
         <div class="flex items-center gap-4 w-full p-6">
           <div class="w-16 h-16 min-w-16 min-h-16 rounded-full border border-[#83684f] grid place-items-center resize-none shrink-0">
@@ -137,12 +131,11 @@ onUnmounted(() => {
 
         <div class="w-full border-b border-[#f3eae4] py-4"></div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-6">
+        <div class="grid grid-cols-1 gap-6 px-6">
           <BaseInput
             label="Full Name"
             placeholder="Enter your full name"
             v-model="bookSessionForm.fullName"
-            class="col-span-2 lg:col-span-1"
           >
             <template #icon>
               <UserIcon class="w-5 h-5 text-[#83684f]" />
@@ -154,7 +147,6 @@ onUnmounted(() => {
             label="Email Address"
             placeholder="Enter your email address"
             v-model="bookSessionForm.email"
-            class="col-span-2 lg:col-span-1"
           >
             <template #icon>
               <EnvelopeIcon class="w-5 h-5 text-[#83684f]" />
@@ -165,46 +157,13 @@ onUnmounted(() => {
             label="Phone Number"
             placeholder="Enter your phone number"
             v-model="bookSessionForm.phone"
-            class="col-span-2 lg:col-span-1"
           >
             <template #icon>
               <PhoneIcon class="w-5 h-5 text-[#83684f]" />
             </template>
           </BaseInput>
 
-          <BaseListbox
-            label="Service"
-            v-model="bookSessionForm.service"
-            :options="[
-              { name: 'Private Session', value: 'private-session' },
-              { name: 'Group Session', value: 'group-session' },
-              { name: 'Consultation', value: 'consultation' }
-            ]"
-            :option-key="'name'"
-            placeholder="Select a service"
-          >
-            <template #icon>
-              <WrenchIcon class="w-5 h-5 text-[#83684f]" />
-            </template>
-          </BaseListbox>
-
-          <BaseDatePicker
-            label="Preferred Date"
-            class="col-span-2 lg:col-span-1"
-            v-model="bookSessionForm.date"
-          />
-
-          <BaseTimePicker 
-            v-model="bookSessionForm.time" 
-            label="Start Time"
-            class="col-span-2 lg:col-span-1"
-          >
-            <template #icon>
-              <ClockIcon class="h-5 w-5 text-[#83684f]" />
-            </template>
-          </BaseTimePicker>
-
-          <div class="col-span-2">
+          <div class="col-span-1">
             <BaseTextArea
               label="MESSAGE / NOTES"
               placeholder="Tell us anything we should know..."

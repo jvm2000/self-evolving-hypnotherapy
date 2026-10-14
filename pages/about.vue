@@ -30,13 +30,27 @@ const aboutContent = [
       <p class="text-base font-light font-montserrat text-black max-w-3xl text-center leading-relaxed pt-6">
         I believe real change begins when you feel safe, understood and completely free from judgement.
       </p>
-
-      <p class="text-3xl font-light font-garamond text-black max-w-3xl text-center py-24 leading-relaxed mx-auto">
-        “My purpose is to help you feel lighter, stronger and more connected to yourself, so you can move forward with greater confidence and live the life you truly deserve.”
-      </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-5xl mx-auto px-8 lg:px-0 py-12">
+    <div class="flex flex-col xl:flex-row items-center gap-20 py-36 mx-auto max-w-5xl px-8 xl:px-0">
+      <div class="relative mx-auto w-full max-w-sm" data-tsd-source="/src/routes/about.tsx:73:11">
+        <div class="absolute -bottom-4 -right-4 h-full w-full rounded-t-full border border-[#b07750]" />
+
+        <img src="/ellen.jpg" alt="Sue-Ellen, hypnotherapist, smiling in a white shirt" class="relative aspect-[3/4] w-full rounded-t-full object-cover object-top shadow-sm" loading="lazy" data-tsd-source="/src/routes/about.tsx:75:13" />
+      </div>
+
+      <div class="flex w-full flex-col items-center xl:items-start gap-3.5">
+        <p class="text-4xl font-alexBrush text-[#b07750] font-extralight">Hello, I'm Sue‑Ellen</p>
+
+        <div class="w-24 h-[1px] bg-[#b07750]"></div>
+
+        <p class="text-4xl font-extralight font-garamond text-black leading-relaxed text-center xl:text-left">
+          “My purpose is to help you feel lighter, stronger and more connected to yourself, so you can move forward with greater confidence and live the life you truly deserve.”
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-5xl mx-auto px-8 xl:px-0 py-12">
       <div
         v-for="about in aboutContent"
         class="rounded-lg p-8 bg-[#fdfaf4] border border-[#ede0d3] flex flex-col items-center space-y-6 lg:h-96"

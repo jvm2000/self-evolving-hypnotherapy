@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon } from '@heroicons/vue/24/outline'
+import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon, PhoneIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
@@ -62,6 +62,17 @@ import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon } from '@heroicons/vue/24/o
                 <div class="flex flex-col items-start">
                   <p class="text-sm font-light font-montserrat text-black tracking-widest uppercase">LOCATION</p>
                   <p class="text-base font-light font-montserrat text-black">In-person & online sessions</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4 whitespace-nowrap">
+                <div class="w-10 h-10 border border-[#b07750]/50 rounded-full grid place-items-center">
+                  <PhoneIcon class="w-5 h-5 stroke-[#b07750]" />
+                </div>
+                
+                <div class="flex flex-col items-start">
+                  <p class="text-sm font-light font-montserrat text-black tracking-widest uppercase">Phone</p>
+                  <p class="text-base font-light font-montserrat text-black">0494695465</p>
                 </div>
               </div>
             </div>
