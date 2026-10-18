@@ -50,7 +50,7 @@ import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon, PhoneIcon } from '@heroico
                 
                 <div class="flex flex-col items-start">
                   <p class="text-sm font-light font-montserrat text-black tracking-widest uppercase">Email</p>
-                  <p class="text-base font-light font-montserrat text-black">info@selfevolvinghypnotherapy.com</p>
+                  <p class="text-base font-light font-montserrat text-black">info@selfevolvinghypnotherapy.com.au</p>
                 </div>
               </div>
 
