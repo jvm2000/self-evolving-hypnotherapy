@@ -3,32 +3,34 @@ import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon, PhoneIcon } from '@heroico
 </script>
 
 <template>
-  <section class="relative">
-    <div class="w-full h-auto lg:h-[44rem] relative pb-8">
-      <img src="/bg9.jpg" alt="Couch Header" class="w-full h-full absolute object-cover z-0 hidden lg:block" />
+  <section class="relative pt-4">
+    <div class="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image:url(/illustrations/contact-couch.jpg)">
+      <div class="absolute inset-0 bg-[#f3e9df]/60 z-0"></div>
 
-      <div class="left-0 lg:absolute w-full lg:h-[44rem] z-10 flex items-center px-6 xl:px-44">
-        <div class="flex flex-col items-start space-y-1.5">
-          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">C O N T A C T</p>
+      <div class="flex flex-col items-center space-y-3 z-10">
+        <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">C O N T A C T</p>
 
-          <p class="text-5xl sm:text-7xl font-garamond text-black tracking-wide pt-6">Let's</p>
+        <p class="text-5xl sm:text-8xl font-alexBrush font-extrabold text-[#83684f] tracking-wide pt-6">Let's</p>
 
-          <div class="w-full flex flex-col items-start space-y-8">
-            <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">Connect</p>
+        <p class="text-5xl sm:text-7xl font-alexBrush text-[#b07750] font-extralight">Connect</p>
 
-            <div class="w-24 h-[1px] bg-[#b07750]"></div>
+        <div class="w-24 h-[1px] bg-[#b07750]" />
 
-            <p class="text-base font-light font-montserrat text-black lg:max-w-lg xl:max-w-xl">
-              Taking the first step is often the hardest. I'd love to hear from you — reach out for a friendly, no-obligation conversation.
-            </p>
-          </div>
+        <p class="text-sm sm:text-lg text-gray-800 text-center font-montserrat px-6 sm:px-0 max-w-2xl w-full">
+          Taking the first step is often the hardest. I'd love to hear from you — reach out for a friendly, no-obligation conversation.
+        </p>
+
+        <div class="flex items-center gap-2 sm:gap-6 pt-6">
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e l e a s e</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f]">.</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">R e c o n n e c t</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f]">.</p>
+          <p class="text-xs sm:text-sm font-montserrat uppercase text-[#83684f] tracking-widest">E v o l v e</p>
         </div>
       </div>
-
-      <div class="left-0 top-0 bg-[linear-gradient(to_bottom,#f3eae4_10%,#f3eae4_1%,transparent_100%)] w-full h-36 absolute z-0"></div>
     </div>
 
-    <div class="flex flex-col items-center w-full py-24">
+    <div class="flex flex-col items-center w-full pt-44 pb-24">
       <div class="grid grid-cols-1 lg:grid-cols-5 items-start max-w-6xl w-full gap-16 px-6 lg:px-0">
         <div class="flex flex-col items-start col-span-2 gap-10">
           <div class="flex flex-col items-start gap-3.5">
@@ -50,7 +52,7 @@ import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon, PhoneIcon } from '@heroico
                 
                 <div class="flex flex-col items-start">
                   <p class="text-sm font-light font-montserrat text-black tracking-widest uppercase">Email</p>
-                  <p class="text-base font-light font-montserrat text-black">info@selfevolvinghypnotherapy.com.au</p>
+                  <p class="text-base font-light font-montserrat text-black">info@selfevolvinghypnotherapy.com</p>
                 </div>
               </div>
 
