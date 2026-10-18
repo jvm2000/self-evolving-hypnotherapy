@@ -1,5 +1,73 @@
 <script setup lang="ts">
 import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon, PhoneIcon } from '@heroicons/vue/24/outline'
+
+type EmailSessionForm = {
+  fullName: string
+  email: string
+  phone: string
+  message: string
+}
+
+const emailSessionForm = ref<EmailSessionForm>({
+  fullName: '',
+  email: '',
+  phone: '',
+  message: '',
+})
+const isSubmitting = ref(false)
+const submitSuccess = ref(false)
+const submitError = ref('')
+const toast = useToast()
+
+function resetForm() {
+  emailSessionForm.value = {
+    fullName: '',
+    email: '',
+    phone: '',
+    message: '',
+  }
+}
+
+async function submitBooking() {
+  if (isDisabled.value || isSubmitting.value) {
+    return
+  }
+
+  isSubmitting.value = true
+  submitSuccess.value = false
+  submitError.value = ''
+
+  try {
+    await $fetch('/api/book-session', {
+      method: 'POST',
+      body: emailSessionForm.value,
+    })
+
+    submitSuccess.value = true
+
+    resetForm()
+
+    toast.success({
+      title: 'Submit Successfully',
+      message: 'Your contact message has now been sent.',
+    })
+  } catch (error: any) {
+    submitError.value =
+      error?.data?.statusMessage ||
+      'Something went wrong while sending your contact message. Please try again.'
+  } finally {
+    isSubmitting.value = false
+  }
+}
+
+const isDisabled = computed(() => {
+  return (
+    !emailSessionForm.value.fullName ||
+    !emailSessionForm.value.email ||
+    !emailSessionForm.value.phone ||
+    !emailSessionForm.value.message
+  )
+})
 </script>
 
 <template>
@@ -83,28 +151,37 @@ import { EnvelopeIcon, MapPinIcon, PaperAirplaneIcon, PhoneIcon } from '@heroico
         <div class="col-span-3 bg-[#fdfaf4] rounded-lg w-full p-8 border border-[#b07750]/20 shadow-sm">
           <div class="grid grid-cols-2 sm:xl:grid-cols-2 gap-6">
             <div class="col-span-2 sm:xl:col-span-1">
-              <BaseInput label="Full Name" placeholder="Enter your full name" />
+              <BaseInput v-model="emailSessionForm.fullName" label="Full Name" placeholder="Enter your full name" />
             </div>  
             <div class="col-span-2 sm:xl:col-span-1">
-              <BaseInput label="Email Address" placeholder="Enter your email address" />
+              <BaseInput v-model="emailSessionForm.email" label="Email Address" placeholder="Enter your email address" />
             </div>
 
             <div class="col-span-2">
-              <BaseInput label="Phone Number" placeholder="Enter your phone number" />
+              <BaseInput v-model="emailSessionForm.phone" label="Phone Number" placeholder="Enter your phone number" />
             </div>
 
             <div class="col-span-2">
               <BaseTextArea
+                v-model="emailSessionForm.message"
                 label="MESSAGE"
                 placeholder="Tell us anything we should know..."
               />
             </div>
           </div>
           
-          <div class="flex justify-start">
-            <button class="bg-[#b07750] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat mt-6 flex items-center">
-              <PaperAirplaneIcon class="w-5 h-5 inline mr-2 -rotate-45" />
-              Send Message
+          <div class="flex justify-start pt-6">
+            <button
+              type="button"
+              :disabled="isDisabled || isSubmitting"
+              class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat w-full"
+              :class="{
+                'opacity-50 cursor-not-allowed': isDisabled || isSubmitting
+              }"
+              @click="submitBooking"
+            >
+              <PaperAirplaneIcon v-if="!isSubmitting" class="w-5 h-5 inline mr-2 -rotate-45" />
+              {{ isSubmitting ? 'Sending...' : 'Send Message' }}
             </button>
           </div>
         </div>
