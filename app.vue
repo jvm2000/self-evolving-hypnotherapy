@@ -3,7 +3,7 @@ useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} · Self Evolving Hypnotherapy` : 'Self Evolving Hypnotherapy with Sue-Ellen'
   },
-  link: [{ rel: 'icon', type: "image/x-icon", href: '/icons/favicon.png' }]
+  link: [{ rel: 'icon', type: "image/x-icon", href: '/icons/favicon.ico' }]
 })
 </script>
 
