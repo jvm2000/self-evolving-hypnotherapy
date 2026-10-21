@@ -24,10 +24,17 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  console.log('SMTP diagnostic:', {
+    host: config.smtpHost,
+    port: config.smtpPort,
+    userExists: Boolean(config.smtpUser),
+    passExists: Boolean(config.smtpPass),
+  })
+  
   const transporter = nodemailer.createTransport({
     host: config.smtpHost,
-    port: 587,
-    secure: false,
+    port: Number(config.smtpPort) || 587,
+    secure: Number(config.smtpPort) === 465,
     auth: {
       user: config.smtpUser,
       pass: config.smtpPass,
