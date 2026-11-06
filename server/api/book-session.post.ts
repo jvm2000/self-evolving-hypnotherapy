@@ -7,6 +7,8 @@ interface BookSessionForm {
   message: string
 }
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default defineEventHandler(async (event) => {
   const body = await readBody<BookSessionForm>(event)
   const config = useRuntimeConfig()
@@ -23,7 +25,16 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Fail early if env vars are missing (prevents the silent 127.0.0.1 fallback)
+  const fullName = body.fullName.trim()
+  const email = body.email.trim()
+
+  if (!EMAIL_REGEX.test(email)) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Please enter a valid email address.',
+    })
+  }
+
   const missing = ['smtpHost', 'smtpUser', 'smtpPass', 'mailFrom', 'mailTo'].filter(
     (key) => !config[key as keyof typeof config],
   )
@@ -35,12 +46,17 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  // Website inbox + Outlook inbox
+  const recipients = [config.mailTo, config.mailToOutlook]
+    .filter(Boolean)
+    .map((addr) => String(addr).trim())
+
   const port = Number(config.smtpPort) || 587
 
   const transporter = nodemailer.createTransport({
     host: config.smtpHost,
     port,
-    secure: port === 465, // true for 465, false (STARTTLS) for 587
+    secure: port === 465,
     auth: {
       user: config.smtpUser,
       pass: config.smtpPass,
@@ -49,15 +65,22 @@ export default defineEventHandler(async (event) => {
 
   try {
     await transporter.sendMail({
-      from: config.mailFrom,
-      to: config.mailTo,
-      replyTo: body.email,
-      subject: `New Booking Request from ${body.fullName}`,
+      from: { name: fullName, address: email },
+      to: recipients,
+      replyTo: { name: fullName, address: email },
+
+      // Must include ALL recipients or some won't receive it
+      envelope: {
+        from: config.mailFrom,
+        to: recipients,
+      },
+
+      subject: `New Booking Request from ${fullName}`,
       text: [
-        `Name: ${body.fullName}`,
-        `Email: ${body.email}`,
-        `Phone: ${body.phone}`,
-        `Message: ${body.message}`,
+        `Name: ${fullName}`,
+        `Email: ${email}`,
+        `Phone: ${body.phone.trim()}`,
+        `Message: ${body.message.trim()}`,
       ].join('\n'),
     })
   } catch (err) {

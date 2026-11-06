@@ -12,5 +12,6 @@ export default defineNuxtConfig({
     smtpPass: '',
     mailFrom: '',
     mailTo: '',
+    mailToOutlook: '',
   },
 })
