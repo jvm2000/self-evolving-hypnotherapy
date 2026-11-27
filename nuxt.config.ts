@@ -6,11 +6,10 @@ export default defineNuxtConfig({
     '~/assets/css/main.css'
   ],
   runtimeConfig: {
-    smtpHost: '',
-    smtpPort: 587,
-    smtpUser: '',
-    smtpPass: '',
-    mailFrom: '',
-    mailTo: '',
+    // Private (server-only). Overridden by NUXT_* env vars automatically.
+    gmailUser: '',
+    gmailAppPassword: '',
+    mailFromName: 'Self Evolving Hypnotherapy Support',
+    mailTo: ''
   },
 })

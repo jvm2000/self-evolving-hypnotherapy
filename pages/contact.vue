@@ -18,6 +18,25 @@ const isSubmitting = ref(false)
 const submitSuccess = ref(false)
 const submitError = ref('')
 const toast = useToast()
+const loading = ref(false)
+const status = ref<{ type: 'success' | 'error'; text: string } | null>(null)
+
+async function submit() {
+  loading.value = true
+  status.value = null
+  try {
+    await $fetch('/api/send-email', { method: 'POST', body: emailSessionForm.value })
+    status.value = { type: 'success', text: 'Thanks! Your request was sent.' }
+    Object.assign(emailSessionForm.value, { fullName: '', email: '', phone: '', message: '' })
+  } catch (e: any) {
+    status.value = {
+      type: 'error',
+      text: e?.data?.statusMessage || 'Something went wrong.',
+    }
+  } finally {
+    loading.value = false
+  }
+}
 
 function resetForm() {
   emailSessionForm.value = {
@@ -176,9 +195,9 @@ const isDisabled = computed(() => {
               :disabled="isDisabled || isSubmitting"
               class="bg-[#93907f] py-2.5 px-8 rounded-lg text-sm text-white uppercase font-montserrat w-full"
               :class="{
-                'opacity-50 cursor-not-allowed': isDisabled || isSubmitting
+                'opacity-50 cursor-not-allowed': isDisabled || loading,
               }"
-              @click="submitBooking"
+              @click="submit"
             >
               <PaperAirplaneIcon v-if="!isSubmitting" class="w-5 h-5 inline mr-2 -rotate-45" />
               {{ isSubmitting ? 'Sending...' : 'Send Message' }}
