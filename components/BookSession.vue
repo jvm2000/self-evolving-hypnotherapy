@@ -50,7 +50,7 @@ async function submitBooking() {
   submitError.value = ''
 
   try {
-    await $fetch('/api/book-session', {
+    await $fetch('/api/send-email', {
       method: 'POST',
       body: bookSessionForm.value,
     })
