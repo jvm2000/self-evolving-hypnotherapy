@@ -28,6 +28,11 @@ async function submit() {
     await $fetch('/api/send-email', { method: 'POST', body: emailSessionForm.value })
     status.value = { type: 'success', text: 'Thanks! Your request was sent.' }
     Object.assign(emailSessionForm.value, { fullName: '', email: '', phone: '', message: '' })
+
+    toast.success({
+      title: 'Submit Successfully',
+      message: 'Your contact message has now been sent.',
+    })
   } catch (e: any) {
     status.value = {
       type: 'error',
